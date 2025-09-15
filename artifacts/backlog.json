@@ -1,0 +1,17 @@
+[
+  {
+    "story": "As a student, I want to scan a hall to see its schedule",
+    "priority": "Must",
+    "acceptance_criteria": "App identifies hall and displays schedule in <2s"
+  },
+  {
+    "story": "As a visitor, I want navigation to a target hall",
+    "priority": "Must",
+    "acceptance_criteria": "App provides turn-by-turn directions"
+  },
+  {
+    "story": "As a faculty member, I want accessibility features",
+    "priority": "Should",
+    "acceptance_criteria": "App supports screen readers"
+  }
+]

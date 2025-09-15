@@ -1,0 +1,19 @@
+{
+  "screens": [
+    {
+      "name": "camera_screen",
+      "elements": [
+        {"type": "preview", "description": "Live camera feed", "accessibility": "Screen reader compatible"},
+        {"type": "button", "description": "Capture button", "accessibility": "High contrast"}
+      ]
+    },
+    {
+      "name": "results_screen",
+      "elements": [
+        {"type": "text", "description": "Hall name", "accessibility": "VoiceOver support"},
+        {"type": "text", "description": "Schedule", "accessibility": "Readable font size"}
+      ]
+    }
+  ],
+  "flow": "camera_screen -> results_screen"
+}

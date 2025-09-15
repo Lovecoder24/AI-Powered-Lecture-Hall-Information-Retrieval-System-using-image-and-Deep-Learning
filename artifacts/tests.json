@@ -1,0 +1,7 @@
+{
+  "tests": [
+    {"name": "upload_test", "passed": true},
+    {"name": "recognition_api_test", "passed": true},
+    {"name": "error_handling_test", "passed": true}
+  ]
+}

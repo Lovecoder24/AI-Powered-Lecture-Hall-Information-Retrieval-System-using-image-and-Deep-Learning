@@ -1,0 +1,10 @@
+{
+  "must_have": ["image_capture", "recognition", "navigation"],
+  "should_have": ["offline_mode", "accessibility", "error_handling"],
+  "could_have": ["multi_language"],
+  "wont_have": ["social_features"],
+  "metrics": {
+    "recognition_accuracy": ">95%",
+    "response_time": "<2s"
+  }
+}

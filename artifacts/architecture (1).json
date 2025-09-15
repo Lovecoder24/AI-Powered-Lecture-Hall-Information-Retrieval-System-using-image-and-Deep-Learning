@@ -1,0 +1,14 @@
+{
+  "components": [
+    {"name": "CameraModule", "type": "Frontend", "interface": "Flutter Camera API"},
+    {"name": "RecognitionModule", "type": "Frontend", "interface": "TFLite YOLOv8"},
+    {"name": "DatabaseModule", "type": "Backend", "interface": "Django REST API"},
+    {"name": "NavigationModule", "type": "Frontend", "interface": "Google Maps API"}
+  ],
+  "connections": [
+    "CameraModule -> RecognitionModule",
+    "RecognitionModule -> DatabaseModule",
+    "DatabaseModule -> UI"
+  ],
+  "tech_stack": {"frontend": "Flutter", "backend": "Django", "ml": "TFLite"}
+}

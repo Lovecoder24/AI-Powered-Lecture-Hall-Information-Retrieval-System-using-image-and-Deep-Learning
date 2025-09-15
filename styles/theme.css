@@ -1,0 +1,38 @@
+/* Brand palette */
+:root {
+  --brand-brown: #795548;
+  --brand-brown-700: #5D4037;
+  --brand-ivory: #F7F3EF;
+  --text-main: #212121;
+  --text-muted: #757575;
+  --error-bg: #EF5350;
+  --error-text: #FFFFFF;
+  --ok-green: #4CAF50;
+  --ok-green-hover: #45A049;
+}
+
+/* Layout helpers */
+.container { max-width: 800px; margin: 0 auto; }
+.title { text-align: center; color: #1E88E5; font-weight: 700; }
+.subtitle { text-align: center; color: var(--text-muted); font-style: italic; }
+.card { background: #FFFFFF; border: 2px solid #E0E0E0; padding: 16px; border-radius: 8px; }
+.alert-error { background: var(--error-bg); color: var(--error-text); padding: 12px; border-radius: 6px; }
+.badge-offline { display: inline-block; padding: 4px 8px; border-radius: 12px; background: #FF9800; color: #FFFFFF; font-size: 12px; }
+
+/* Streamlit widget tweaks */
+[data-testid="stFileUploaderDropzone"] {
+  border: 2px dashed #E0E0E0; border-radius: 10px; min-height: 200px;
+}
+[data-testid="stFileUploaderDropzoneInstructions"] { color: var(--text-muted); }
+
+/* Buttons */
+[data-testid="stButton"] > button {
+  background: var(--ok-green);
+  color: white;
+  border: none;
+  height: 50px;
+}
+[data-testid="stButton"] > button:hover { background: var(--ok-green-hover); }
+
+/* Sidebar / general */
+section.main { color: var(--text-main); }

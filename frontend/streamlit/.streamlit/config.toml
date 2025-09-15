@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#795548"           # Brown (Material Brown 500)
+backgroundColor = "#FFFFFF"        # White
+secondaryBackgroundColor = "#F7F3EF" # Very light brown/ivory for cards/sections
+textColor = "#212121"
+font = "sans serif"

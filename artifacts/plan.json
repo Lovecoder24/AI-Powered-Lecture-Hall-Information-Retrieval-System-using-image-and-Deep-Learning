@@ -1,0 +1,10 @@
+{
+  "goals": [
+    "Design architecture for image capture and recognition",
+    "Create wireframes for camera and results screens",
+    "Build MVP for capture and mock recognition"
+  ],
+  "scope": ["image_capture", "recognition"],
+  "timeline": "2 weeks",
+  "tech_stack": ["Flutter", "Django", "TFLite"]
+}

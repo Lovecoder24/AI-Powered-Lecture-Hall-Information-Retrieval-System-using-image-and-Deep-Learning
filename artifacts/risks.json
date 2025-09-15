@@ -1,0 +1,10 @@
+[
+  {
+    "risk": "GDPR compliance for image data",
+    "mitigation": "Anonymize images, obtain user consent"
+  },
+  {
+    "risk": "Incomplete campus data",
+    "mitigation": "Collaborate with admins for API access"
+  }
+]
