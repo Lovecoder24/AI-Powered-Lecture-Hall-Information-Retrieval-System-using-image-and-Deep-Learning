@@ -80,7 +80,7 @@ TEMPLATES = [
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     # This now points to the 'assets' folder inside 'dist'
-    os.path.join(BASE_DIR, '..', 'frontend', 'dist', 'assets'),
+    os.path.join (BASE_DIR, 'frontend', 'dist', 'assets'),
 ]
 
 WSGI_APPLICATION = 'hallnav_backend.wsgi.application'
@@ -146,7 +146,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS configuration for local React dev server
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000/',
+    'http://localhost:3000',
     'http://127.0.0.1:3000',
 ]
 
