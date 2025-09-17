@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState ,useEffect} from 'react'
 import { initializeApp, type FirebaseApp } from 'firebase/app'
 import { getFirestore, type Firestore, collection, onSnapshot, addDoc, deleteDoc, doc, updateDoc, getDocs } from 'firebase/firestore'
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
+
 
 type RecognitionResult = {
   hall_id: string
@@ -12,7 +13,7 @@ type RecognitionResult = {
 }
 
 function useApiBaseUrl() {
-  return useMemo(() => (import.meta as any).env?.VITE_API_BASE_URL || 'http://127.0.0.1:8000', [])
+  return useMemo(() => (import.meta as any).env?.VITE_API_BASE_URL || 'https://ai-powered-lecture-hall-information.onrender.com', [])
 }
 
 function useFirebase(): { app: FirebaseApp | null, db: Firestore | null } {
@@ -127,21 +128,28 @@ function HomePage(): JSX.Element {
   const navigate = useNavigate()
 
   // Hero images from your collection
-  const heroImages = [
-    '/justin-.jpg',
-    '/anastasiia-.jpg', 
-    '/young-student-boy.jpg'
-  ]
-
+  
   // School images for animated collage
-  const schoolImages = [
-    '/school.jpg',
-    '/shool1.jpg', 
-    '/school2.jpg',
-    '/shool3.jpg',
-    '/shool4.jpg',
-    '/school5.jpg'
-  ]
+   // Assume these are your imported image arrays
+//const heroImages = []; 
+// Your hero background images
+const heroImages = [
+  '/justin-.jpg',
+  '/anastasiia-.jpg', 
+  '/young-student-boy.jpg'
+];
+//const schoolImages = [];
+//  // Your collage images
+
+const schoolImages = [
+  '/school.jpg',
+  '/shool1.jpg', 
+  '/school2.jpg',
+  '/shool3.jpg',
+  '/shool4.jpg',
+  '/school5.jpg'
+];
+
 
   // Auto-slide effect
   React.useEffect(() => {
@@ -289,98 +297,100 @@ function HomePage(): JSX.Element {
     }
   }, [stream])
 
+
+ 
+
   return (
     <Shell>
       <div className="home-container">
         {/* Hero Section with Sliding Images */}
         <section className="hero-section">
           <div className="hero-slider">
-           {heroImages.map((image, index) => (
-              <div 
-              key={index}
-                 className={`hero-slide ${index === currentSlide ? 'active' : ''}`}
-                style={ {backgroundImage: `url(${image})`}}/>
-            
-))}
-     </div>       
-            <div className='hero-overlay'/>
-            <div className="hero-content">
-              <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
-                <div className="hero-text" style={{ flex: '1 1 320px', minWidth: 260 }}>
-              <h1 className="hero-main-title">University Hall Recognition</h1>
-              <p className="hero-main-subtitle">
-                Instantly identify university lecture halls and get real-time schedules, capacity, and location details.
-              </p>
-              </div>
-              </div>
-              
-                <div className="hero-side-image" style={{ flex: '0 1 auto', position: 'absolute', width: 420, maxWidth: '100%', minWidth: 240, height: 300 }}>
-                  {/* Animated collage overlay */}
-                  <div style={{ 
-                    position: 'absolute', 
-                    top: 0, 
-                    left: 0, 
-                    right: 0, 
-                    bottom: 0, 
-                    display: 'flex', 
-                    alignItems: 'right', 
-                    justifyContent: 'right',
-                    zIndex: 2
-                  }}>
-                  </div>
-                    <img
-                      src={schoolImages[(collageIndex) % schoolImages.length]}
-                      alt="School collage 1"
-                      style={{ 
-                        position: 'absolute',
-                        width: '60%',
-                        height: 'auto',
-                        borderRadius: '1rem',
-                        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-                        transform: 'rotate(-6deg)',
-                        animation: 'moveAndFade 20s infinite ease-in-out'
-                      }}
-                    />
-                    <img
-                      src={schoolImages[(collageIndex + 1) % schoolImages.length]}
-                      alt="School collage 2"
-                      style={{ 
-                        position: 'absolute',
-                        width: '60%',
-                        height: 'auto',
-                        borderRadius: '1rem',
-                        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-                        transform: 'rotate(3deg) translateY(-20px)',
-                        animation: 'moveAndFade 20s infinite ease-in-out'
-                      }}
-                    />
-                    <img
-                      src={schoolImages[(collageIndex + 2) % schoolImages.length]}
-                      alt="School collage 3"
-                      style={{ 
-                        position: 'absolute',
-                        width: '60%',
-                        height: 'auto',
-                        borderRadius: '1rem',
-                        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-                        transform: 'rotate(12deg) translateY(20px)',
-                        animation: 'moveAndFade 15s infinite ease-in-out'
-                      }}
-                    />
+            {heroImages.map((image, index) => (
+              <div
+                key={index}
+                className={`hero-slide ${index === currentSlide ? 'active' : ''}`}
+                style={{ backgroundImage: `url(${image})` }}
+              />
+            ))}
+          </div>
 
-                  </div>
-                  {/* Fallback static image */}
-                  {/*<img
-                    src="/premium_vector-.png"
-                    alt="Lecture hall illustration"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />*/}
-                  </div>
-             
-              
+          <div className='hero-overlay' />
+          <div className="hero-content two-column-layout">
+            
+            {/* Left Div for Write-up */}
+            <div className="hero-left-column">
+              <div className="hero-text" style={{ flex: '1 1 320px', minWidth: 260 }}>
+                <h1 className="hero-main-title">University Hall Recognition</h1>
+                <p className="hero-main-subtitle">
+                  Instantly identify university lecture halls and get real-time schedules, capacity, and location details.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Div for Image Collage */}
+            <div className="hero-right-column">
+              <div className="hero-side-image">
+                {/* The following mapping is redundant and causing issues */}
+                {/* It seems you want to render a few images with different styles */}
+                {/* I'll use the original collage logic here */}
+                <img
+                  src={schoolImages[(collageIndex) % schoolImages.length]}
+                  alt="School collage 1"
+                  style={{
+                    position: 'absolute',
+                    width: '60%',
+                    height: 'auto',
+                    borderRadius: '1rem',
+                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                    transform: 'rotate(-6deg)',
+                    animation: 'moveAndFade 20s infinite ease-in-out'
+                  }}
+                />
+                <img
+                  src={schoolImages[(collageIndex + 1) % schoolImages.length]}
+                  alt="School collage 2"
+                  style={{
+                    position: 'absolute',
+                    width: '60%',
+                    height: 'auto',
+                    borderRadius: '1rem',
+                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                    transform: 'rotate(3deg) translateY(-20px)',
+                    animation: 'moveAndFade 20s infinite ease-in-out'
+                  }}
+                />
+                <img
+                  src={schoolImages[(collageIndex + 2) % schoolImages.length]}
+                  alt="School collage 3"
+                  style={{
+                    position: 'absolute',
+                    width: '60%',
+                    height: 'auto',
+                    borderRadius: '1rem',
+                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                    transform: 'rotate(12deg) translateY(20px)',
+                    animation: 'moveAndFade 15s infinite ease-in-out'
+                  }}
+                />
+                {/* Animated collage overlay */}
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  display: 'flex',
+                  alignItems: 'right',
+                  justifyContent: 'right',
+                  zIndex: 2
+                }} />
+              </div>
+            </div>
+          </div>
         </section>
-        
-      
+
+
         {/* Main Actions Section */}
         <main className="home-main">
           <div className="actions-grid">

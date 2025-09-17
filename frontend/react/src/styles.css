@@ -79,6 +79,7 @@
   font-size: 1.1rem;
 }
 
+
 /* Background image placed via body background for easy branding */
 body { background: var(--surface) url('/bg.jpg') no-repeat center/cover fixed; }
 
@@ -195,17 +196,47 @@ body { background: var(--surface) url('/bg.jpg') no-repeat center/cover fixed; }
   background: linear-gradient(135deg, rgba(214, 180, 165, 0.8), rgba(240, 165, 130, 0.6)); 
   z-index: 1; 
 }
-.hero-content { 
+.hero-content.two-column-layout { 
   position: relative; 
-  /*top: 50%; 
-  left: 50%; 
-  transform: translate(-50%, -50%); */
-  text-align: left; 
-  color: white; 
-  z-index: 2; 
-  max-width: 50%; 
-  padding: 0 2rem; 
+  position: relative; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem; 
+  gap: 2rem; 
+  flex-wrap: wrap; 
+
 }
+
+
+
+
+.hero-left-column {
+  flex: 1 1 50%; /* Takes up roughly 50% of the space */
+  min-width: 300px; /* Prevents it from getting too small */
+}
+
+.hero-right-column {
+  flex: 1 1 50%;
+  /* This is the missing piece */
+  display: flex; 
+  /* This is the key change */
+  justify-content: flex-end; 
+  align-items: center;
+}
+
+/* Ensure the image container has a relative position */
+.hero-side-image {
+  position: relative;
+  width: 100%; 
+  padding-bottom: 75%; 
+  height: 0;
+}
+
+
 .hero-main-title { 
   font-size: 3rem; 
   font-weight: 800; 
