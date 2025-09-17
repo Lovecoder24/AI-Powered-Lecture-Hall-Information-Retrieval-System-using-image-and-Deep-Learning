@@ -7,7 +7,8 @@ from torchvision import models, transforms
 import torch.nn as nn
 import torch.nn.functional as F
 from pathlib import Path
-
+from django.shortcuts import render # You may need to add this import
+from django.views.generic import TemplateView
 from .models import Hall, Schedule
 
 # --- PyTorch Model Integration ---
@@ -129,6 +130,10 @@ def predict_image(image, model):
         probs = F.softmax(outputs, dim=1)
         conf, predicted = torch.max(probs, 1)
     return predicted.item(), float(conf.item())
+
+class HomePageView(TemplateView):
+    template_name = 'index.html'
+
 
 @csrf_exempt
 def recognize_hall(request):
